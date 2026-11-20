@@ -10,7 +10,7 @@ enum class Rank {
 struct Card {
     Suit suit;
     Rank rank;
-    int  points;
+    int points;
 };
 
 const int DECK_SIZE = 36;
@@ -18,14 +18,14 @@ const int MAX_HAND = 20;
 
 struct Deck {
     Card cards[DECK_SIZE];
-    int  topIndex;
+    int topIndex;
 };
 
 struct Player {
     char name[32];
     Card hand[MAX_HAND];
-    int  cardCount;
-    int  score;
+    int cardCount;
+    int score;
 };
 
 extern const int MAX_SCORE;
