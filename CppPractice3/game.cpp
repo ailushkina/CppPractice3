@@ -5,17 +5,17 @@ using namespace std;
 
 void hit(Player& player, Deck& deck) {
     Card card = dealCard(deck);
-    cout << player.name << " draws: ";
+    cout << player.name << " берет карту: ";
     display(card);
     addCardToHand(player, card);
 }
 
 void stand(Player& player, Deck&) {
-    cout << player.name << " stands.\n";
+    cout << player.name << " останавливается (Stand).\n";
 }
 
 void display(const Card& card) {
-    cout << rankName(card.rank) << " of " << suitName(card.suit)
+    cout << rankName(card.rank) << " " << suitName(card.suit)
         << " (" << card.points << ")\n";
 }
 
@@ -23,7 +23,7 @@ void display(const Player& player) {
     cout << player.name << " [" << player.score << "]: ";
     for (int i = 0; i < player.cardCount; ++i) {
         if (i > 0) cout << ", ";
-        cout << rankName(player.hand[i].rank) << " of "
+        cout << rankName(player.hand[i].rank) << " "
             << suitName(player.hand[i].suit);
     }
     cout << "\n";
@@ -38,7 +38,7 @@ void dealerTurn(Player& dealer, Deck& deck) {
     if (!dealerShouldHit(dealer))
         return;
     Card card = dealCard(deck);
-    cout << dealer.name << " draws: ";
+    cout << dealer.name << " берет карту: ";
     display(card);
     addCardToHand(dealer, card);
     dealerTurn(dealer, deck);
@@ -48,19 +48,19 @@ void printRoundResult(const Player& player, const Player& dealer) {
     static int roundCounter = 0;
     ++roundCounter;
 
-    cout << "\n=== Round " << roundCounter << " result ===\n";
+    cout << "\n=== Результат раунда " << roundCounter << " ===\n";
     display(player);
     display(dealer);
 
     bool playerBust = isBust(player);
     bool dealerBust = isBust(dealer);
 
-    if (playerBust && dealerBust)     cout << "Both bust. Draw.\n";
-    else if (playerBust)                   cout << "You bust. Dealer wins.\n";
-    else if (dealerBust)                   cout << "Dealer busts. You win!\n";
-    else if (player.score > dealer.score)  cout << "You win!\n";
-    else if (player.score < dealer.score)  cout << "Dealer wins.\n";
-    else                                   cout << "Draw.\n";
+    if (playerBust && dealerBust)          cout << "Перебор у обоих. Ничья.\n";
+    else if (playerBust)                   cout << "У вас перебор. Дилер победил.\n";
+    else if (dealerBust)                   cout << "У дилера перебор. Вы победили!\n";
+    else if (player.score > dealer.score)  cout << "Вы победили!\n";
+    else if (player.score < dealer.score)  cout << "Дилер победил.\n";
+    else                                   cout << "Ничья.\n";
 }
 
 void playRound(Player& player, Player& dealer, Deck& deck) {
@@ -69,31 +69,31 @@ void playRound(Player& player, Player& dealer, Deck& deck) {
 
     for (int i = 0; i < 2; ++i) {
         Card card = dealCard(deck);
-        cout << player.name << " draws: ";
+        cout << player.name << " берет карту: ";
         display(card);
         addCardToHand(player, card);
     }
     for (int i = 0; i < 2; ++i)
         addCardToHand(dealer, dealCard(deck));
 
-    cout << "\nDealer upcard: ";
+    cout << "\nОткрытая карта дилера: ";
     display(dealer.hand[0]);
 
     ActionFunc actions[2] = { hit, stand };
 
     while (!isBust(player)) {
-        display(player, "Your current hand:");
-        cout << "Action (0 - Hit, 1 - Stand): ";
+        display(player, "Ваши текущие карты:");
+        cout << "Действие (0 - Взять карту [Hit], 1 - Остановиться [Stand]): ";
 
         int choice;
         if (!(cin >> choice)) {
             cin.clear();
             cin.ignore(10000, '\n');
-            cout << "Invalid input.\n";
+            cout << "Ошибка ввода.\n";
             continue;
         }
         if (choice < 0 || choice > 1) {
-            cout << "Invalid choice.\n";
+            cout << "Неверный выбор.\n";
             continue;
         }
         actions[choice](player, deck);
@@ -101,7 +101,7 @@ void playRound(Player& player, Player& dealer, Deck& deck) {
     }
 
     if (!isBust(player)) {
-        cout << "\nDealer's turn:\n";
+        cout << "\nХод дилера:\n";
         dealerTurn(dealer, deck);
     }
 
@@ -110,7 +110,7 @@ void playRound(Player& player, Player& dealer, Deck& deck) {
 
 bool askPlayAgain() {
     char answer;
-    cout << "\nPlay again? (y/n): ";
+    cout << "\nСыграть еще раз? (y/n): ";
     cin >> answer;
     return answer == 'y' || answer == 'Y';
 }

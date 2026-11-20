@@ -10,9 +10,9 @@ void initDeck(Deck& deck) {
             Card c;
             c.suit = static_cast<Suit>(s);
             c.rank = static_cast<Rank>(r);
-            if (r <= 10)                       c.points = r;
-            else if (r >= 11 && r <= 13)       c.points = 10;
-            else                               c.points = 11;
+            if (r <= 10) c.points = r;
+            else if (r >= 11 && r <= 13) c.points = 10;
+            else c.points = 11;
             deck.cards[idx++] = c;
         }
     }
@@ -62,25 +62,25 @@ void addCardToHand(Player& player, Card card) {
 
 const char* suitName(Suit suit) {
     switch (suit) {
-    case Suit::Spades:   return "Spades";
-    case Suit::Clubs:    return "Clubs";
-    case Suit::Diamonds: return "Diamonds";
-    case Suit::Hearts:   return "Hearts";
+    case Suit::Spades:   return "Пики";
+    case Suit::Clubs:    return "Трефы";
+    case Suit::Diamonds: return "Бубны";
+    case Suit::Hearts:   return "Черви";
     }
     return "?";
 }
 
 const char* rankName(Rank rank) {
     switch (rank) {
-    case Rank::Six:   return "Six";
-    case Rank::Seven: return "Seven";
-    case Rank::Eight: return "Eight";
-    case Rank::Nine:  return "Nine";
-    case Rank::Ten:   return "Ten";
-    case Rank::Jack:  return "Jack";
-    case Rank::Queen: return "Queen";
-    case Rank::King:  return "King";
-    case Rank::Ace:   return "Ace";
+    case Rank::Six:   return "Шесть";
+    case Rank::Seven: return "Семь";
+    case Rank::Eight: return "Восемь";
+    case Rank::Nine:  return "Девять";
+    case Rank::Ten:   return "Десять";
+    case Rank::Jack:  return "Валет";
+    case Rank::Queen: return "Дама";
+    case Rank::King:  return "Король";
+    case Rank::Ace:   return "Туз";
     }
     return "?";
 }
