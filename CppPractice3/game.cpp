@@ -55,12 +55,12 @@ void printRoundResult(const Player& player, const Player& dealer) {
     bool playerBust = isBust(player);
     bool dealerBust = isBust(dealer);
 
-    if (playerBust && dealerBust)          cout << "Перебор у обоих. Ничья.\n";
-    else if (playerBust)                   cout << "У вас перебор. Дилер победил.\n";
-    else if (dealerBust)                   cout << "У дилера перебор. Вы победили!\n";
-    else if (player.score > dealer.score)  cout << "Вы победили!\n";
-    else if (player.score < dealer.score)  cout << "Дилер победил.\n";
-    else                                   cout << "Ничья.\n";
+    if (playerBust && dealerBust) cout << "Перебор у обоих. Ничья.\n";
+    else if (playerBust) cout << "У вас перебор. Дилер победил.\n";
+    else if (dealerBust) cout << "У дилера перебор. Вы победили!\n";
+    else if (player.score > dealer.score) cout << "Вы победили!\n";
+    else if (player.score < dealer.score) cout << "Дилер победил.\n";
+    else cout << "Ничья.\n";
 }
 
 void playRound(Player& player, Player& dealer, Deck& deck) {

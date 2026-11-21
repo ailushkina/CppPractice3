@@ -62,25 +62,25 @@ void addCardToHand(Player& player, Card card) {
 
 const char* suitName(Suit suit) {
     switch (suit) {
-    case Suit::Spades:   return "Пики";
-    case Suit::Clubs:    return "Трефы";
+    case Suit::Spades: return "Пики";
+    case Suit::Clubs: return "Трефы";
     case Suit::Diamonds: return "Бубны";
-    case Suit::Hearts:   return "Черви";
+    case Suit::Hearts: return "Черви";
     }
     return "?";
 }
 
 const char* rankName(Rank rank) {
     switch (rank) {
-    case Rank::Six:   return "Шесть";
+    case Rank::Six: return "Шесть";
     case Rank::Seven: return "Семь";
     case Rank::Eight: return "Восемь";
-    case Rank::Nine:  return "Девять";
-    case Rank::Ten:   return "Десять";
-    case Rank::Jack:  return "Валет";
+    case Rank::Nine: return "Девять";
+    case Rank::Ten: return "Десять";
+    case Rank::Jack: return "Валет";
     case Rank::Queen: return "Дама";
-    case Rank::King:  return "Король";
-    case Rank::Ace:   return "Туз";
+    case Rank::King: return "Король";
+    case Rank::Ace: return "Туз";
     }
     return "?";
 }
